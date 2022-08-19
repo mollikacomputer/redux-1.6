@@ -1,51 +1,47 @@
-// step 1 create dom element
-// step 2 select initial state
-// step 3 create Reducer function
-// step 4 Creae Reducer store
-
-//step 1 create dom element
+// step 1 select dome element
 const counterEl = document.getElementById('counter');
 const incrementEl = document.getElementById('increment');
 const decrementEl = document.getElementById('decrement');
-
-//step 2 select initial state
+//setp 2 select initial state
 const initialState = {
-    value: 0,
+    value:0,
 };
-
-// step 3 Reducer function
-function counterReducer(state = initialState, action){ // was mistake arrow function
+//setp 3 create reducer function
+function counterReducer(state = initialState, action){
     if(action.type === 'increment'){
         return{
             ...state,
-            value: state.value + 1 ,
-        };
+            value: state.value + 1,
+        }
     }else if(action.type === 'decrement'){
         return{
             ...state,
-            value:state.value - 1, // value : mistake .
-        };
+            value: state.value - 1,
+        }
     }else{
-        return state;
+        return state; // here , mistake one time then not working
     }
 };
 
 // step 4 create store
 const store = Redux.createStore(counterReducer);
 
-// step 5 render function
+// step 5 render
+
 const render = () => {
     const state = store.getState();
     counterEl.innerText = state.value.toString();
-}
+};
 
-// step 6 update UI
+//step 6 UI Update
 render();
 
-// step 7 subscribe
+//step 7 store subscribe
+
 store.subscribe(render);
 
-// step 8 button addEventListener
+// step 8 button click listener
+
 incrementEl.addEventListener('click', () => {
     store.dispatch({
         type:"increment",
@@ -55,9 +51,8 @@ incrementEl.addEventListener('click', () => {
 decrementEl.addEventListener('click', () => {
     store.dispatch({
         type:"decrement",
-    });
+    })
 });
-
 //================end practice ==============
 
 // // main things
